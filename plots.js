@@ -1,19 +1,3 @@
-# Plot.ly Challenge - Belly Button Biodiversity
-In this assignment, you will build an interactive dashboard to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.
-
-The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
-
------
-
-## Step 1: Plot.ly
-* Use the D3 library to read in samples.json.
-* Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
-* Create a bubble chart that displays each sample.
-* Display the sample metadata, i.e., an individual's demographic information.
-* Display each key-value pair from the metadata JSON object somewhere on the page.
-* Update all of the plots any time that a new sample is selected.
-
-```js
 function buildMetadata(sample) {
   d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
@@ -122,55 +106,3 @@ function optionChanged(newSample) {
 
 // Initialize the dashboard
 init();
-```
-
------
-
-## Step 2: Gauge Chart
-* Adapt the Gauge Chart from [alt text](https://plot.ly/javascript/gauge-charts/) to plot the weekly washing frequency of the individual.
-* Modify the example gauge code to account for values ranging from 0 through 9.
-* Update the chart whenever a new sample is selected.
-
-```js
-function buildGauge(wfreq) {
-  // Enter the washing frequency between 0 and 180
-  var level = parseFloat(wfreq) * 20;
-
-  var data = [
-    {
-      domain: { x: [0, 1], y: [0, 1]},
-      value: wfreq,
-      title: { text: "<b>Belly Button Washing Frequency</b> <br><span style='font-size:0.8em;color:gray'>Scrubs per Week</span>" },
-      type: "indicator",
-      mode: "gauge",
-      gauge: {
-        axis: { range: [null, 9], tickwidth: 2, tickmode: "linear" },
-        bar: { color: "rbga(0, 128, 0, .8)" },
-        steps:
-          [
-            { range: [0, 1], color: "rgba(0, 128, 128, .05 )" },
-            { range: [1, 2], color: "rgba(0, 128, 128, .1)" },
-            { range: [2, 3], color: "rgba(0, 128, 128, .2)" },
-            { range: [3, 4], color: "rgba(0, 128, 128, .3)" },
-            { range: [4, 5], color: "rgba(0, 128, 128, .4)" },
-            { range: [5, 6], color: "rgba(0, 128, 128, .5)" },
-            { range: [6, 7], color: "rgba(0, 128, 128, .6)" },
-            { range: [7, 8], color: "rgba(0, 128, 128, .7)" },
-            { range: [8, 9], color: "rgba(0, 128, 128, .8)" },
-          ],
-        threshold: {
-          line: { color: "purple", width: 7 },
-          thickness: .75,
-          value: wfreq
-        }
-      }
-    }
-  ];
-
-  var layout = { width: 500, height: 500, margin: { t: 0, b: 0 } };
-  var GAUGE = document.getElementById("gauge");
-  Plotly.newPlot(GAUGE, data, layout);
-}
-```
-
------
