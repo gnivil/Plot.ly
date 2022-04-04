@@ -126,7 +126,7 @@ init();
 
 -----
 
-## Step 2: Gauge Chart
+## Bonus: Gauge Chart
 * Adapt the Gauge Chart from [alt text](https://plot.ly/javascript/gauge-charts/) to plot the weekly washing frequency of the individual.
 * Modify the example gauge code to account for values ranging from 0 through 9.
 * Update the chart whenever a new sample is selected.
