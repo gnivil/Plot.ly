@@ -172,5 +172,4 @@ function buildGauge(wfreq) {
   Plotly.newPlot(GAUGE, data, layout);
 }
 ```
-
 -----
